@@ -22,17 +22,41 @@ while (!feof($file1)) {
 
     $linesfile1 = fgets($file1);
     $linesfile2 = fgets($file2);
-  if($linesfile1 !== "{" or $linesfile1 !== "}"  && $linesfile2 !== "{" or $linesfile2 !== "}") {
-        if ($linesfile1 !== $linesfile2) {
 
-            echo $filename1 . "." . $linesfile1 . "mapped and changed to " . $filename2 . "." . $linesfile2 . "<br/><br>";
-        } else {
-            echo $filename1 . "." . $linesfile1 . "mapped to " . $filename2 . "." . $linesfile2 . "<br/><br>";
-        }
-  }
-    
+    //to avoid scan brackets { }
+    $codeslinesfile1 = str_replace("{", " ", $linesfile1);
+    $codeslinesfile2 = str_replace("{", " ", $linesfile2);
+
+
+    if ($codeslinesfile1 !== $codeslinesfile2) {
+
+        echo $filename1 . "." . $linesfile1 . "mapped and changed to " . $filename2 . "." . $linesfile2 . "<br/><br>";
+    } else {
+        echo $filename1 . "." . $linesfile1 . "mapped to " . $filename2 . "." . $linesfile2 . "<br/><br>";
+    }
 }
+
+
 
 fclose($file1);
 fclose($file2);
-//read old file , $file1 ->old source file
+
+/*
+function extractSyntax($linesfile1, $linesfile2)
+{
+    //remove whitespaces
+    $linesfile1trimed = trim($linesfile1);
+    $linesfile2trimed = trim($linesfile2);
+
+
+    //remove brackets 
+    $pureCodelinesfile1 = str_replace("{", " ", $linesfile1trimed);
+    $pureCodelinesfile2 = str_replace("{", " ", $linesfile2trimed);
+    //remove brackets 
+    $pureCodelinesfile1 = str_replace("}", " ", $pureCodelinesfile1);
+    $pureCodelinesfile2 = str_replace("}", " ", $pureCodelinesfile2);
+
+
+        
+}
+*/
