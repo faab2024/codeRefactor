@@ -22,27 +22,43 @@ while (!feof($file1)) {
     $linesfile1 = fgets($file1);
     
     $linesfile2 = fgets($file2);
+
     $stringfil2 =  file_get_contents($filename2);
+
     $stringfil1 =  file_get_contents($filename1);
 
     //to avoid scan brackets { }
     $linesfile1 = extractSyntax($linesfile1);
+
     $linesfile2 = extractSyntax($linesfile2);
-    
+    /*
    if (!stristr($stringfil2,$linesfile1)){
-      echo $linesfile1."is delete in new version"."<br />";
+      echo $linesfile1."is deleted in new version"."<br />";
    }
   
   if(!stristr($stringfil1,$linesfile2)){
       echo $linesfile2."is added in new version"."<br />";
   }
+  */
+   //if ($linesfile1 !=null && $linesfile2 !=null) {
+   if ($linesfile1  == $linesfile2 ) {
+          echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
 
-   if ($linesfile1 !=null && $linesfile2 !=null) {
-          echo $filename1. "    " . $linesfile2 . "     is added in the new version  " . "<br/><br>";
+    }elseif (similar_text($linesfile1, $linesfile2)) {
+
+       echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
+
+    }elseif (!stristr($stringfil2,$linesfile1)){
+            echo $linesfile1."is deleted in new version"."<br />";
+
+    }else if(!stristr($stringfil1,$linesfile2)){
+            echo $linesfile2."is added in new version"."<br />";
+    }
+
    }
-   
 
-}
+
+
 
 fclose($file1);
 fclose($file2);
