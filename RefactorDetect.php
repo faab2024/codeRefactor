@@ -31,24 +31,16 @@ while (!feof($file1)) {
     $linesfile1 = extractSyntax($linesfile1);
 
     $linesfile2 = extractSyntax($linesfile2);
-    /*
-   if (!stristr($stringfil2,$linesfile1)){
-      echo $linesfile1."is deleted in new version"."<br />";
-   }
-  
-  if(!stristr($stringfil1,$linesfile2)){
-      echo $linesfile2."is added in new version"."<br />";
-  }
-  */
-   //if ($linesfile1 !=null && $linesfile2 !=null) {
-   if ($linesfile1  == $linesfile2 ) {
-          echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
-
-    }elseif (similar_text($linesfile1, $linesfile2)) {
+    
+     //if (empty($linesfile1) && empty($linesfile2)) {
+    if ($linesfile1==" " && $linesfile2 == " ") {
+          //echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
+          echo " ";
+    }else if (similar_text($linesfile1, $linesfile2)) {
 
        echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
 
-    }elseif (!stristr($stringfil2,$linesfile1)){
+    }else if (!stristr($stringfil2,$linesfile1)){
             echo $linesfile1."is deleted in new version"."<br />";
 
     }else if(!stristr($stringfil1,$linesfile2)){
