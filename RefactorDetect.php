@@ -31,20 +31,25 @@ while (!feof($file1)) {
     $linesfile1 = extractSyntax($linesfile1);
 
     $linesfile2 = extractSyntax($linesfile2);
-    
-     //if (empty($linesfile1) && empty($linesfile2)) {
-    if ($linesfile1==" " && $linesfile2 == " ") {
-          //echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
-          echo " ";
-    }else if (similar_text($linesfile1, $linesfile2)) {
 
-       echo $filename1. "    " . $linesfile1 . "     is mapped to  " . $linesfile2." <br/><br>";
+    similar_text($linesfile1, $linesfile2,$per);
+    if($linesfile1!=" " && $linesfile2 !=" ") {
+    if ($per ==100 ){
+       echo $filename1. "    " . $linesfile1 . "     is not changed and mapped to  " .$filename2."  ". $linesfile2." <br/><br>";
+    }else if ($per <=100 && $per>50){
+        echo $filename1. "    " . $linesfile1 . "    is changed and mapped to  " .$filename2."  ". $linesfile2." <br/><br>";
+    }else if ($per <=50){
+       if (!stristr($stringfil2,$linesfile1)){
+             echo $filename1. "    " . $linesfile1."is deleted in new version"."<br /><br>";
 
-    }else if (!stristr($stringfil2,$linesfile1)){
-            echo $linesfile1."is deleted in new version"."<br />";
+      }
+      if(!stristr($stringfil1,$linesfile2)){
+            echo $filename2. "    " . $linesfile2."is added in new version"."<br /><br>";
+      }
 
-    }else if(!stristr($stringfil1,$linesfile2)){
-            echo $linesfile2."is added in new version"."<br />";
+
+    }  
+
     }
 
    }
