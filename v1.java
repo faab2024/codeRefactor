@@ -1,7 +1,6 @@
 public class A {
     public void doRevertToSaved() {
         // code goes here
-
         performRevertOperation(100);
     }
 
